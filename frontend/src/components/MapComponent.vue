@@ -53,7 +53,7 @@ export default {
 
     const fetchRestaurants = async () => {
       try {
-        const response = await fetch('http://localhost:8080/restaurants');
+        const response = await fetch('http://49.13.157.100:8080/restaurants');
         const data = await response.json();
 
         // Clear previous markers

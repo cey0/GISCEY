@@ -48,14 +48,14 @@ export default {
   methods: {
     async fetchTypes() {
       try {
-        const response = await axios.get("http://localhost:8080/types");
+        const response = await axios.get("http://49.13.157.100:8080/types");
         this.types = response.data.success;
       } catch (error) {
         console.error("Error fetching types:", error);
       }
     },
     getImagePath(filename) {
-      return `http://localhost:8080/fotoTypes/${filename}`;
+      return `http://49.13.157.100:8080/fotoTypes/${filename}`;
     },
     goToMap(typeId) {
     this.router.push({ name: 'maps', query: { typeId } });
