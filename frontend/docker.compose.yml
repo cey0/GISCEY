@@ -1,0 +1,2 @@
+volumes:
+  - /etc/nginx/ssl:/etc/nginx/ssl
