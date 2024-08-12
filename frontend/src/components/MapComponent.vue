@@ -1,6 +1,7 @@
 <template>
   <div>
     <input v-model="searchQuery" @input="searchRestaurants" placeholder="Search restaurants" />
+    <button @click="getUserLocation">Get User Location</button>
     <div id="map" style="height: 500px;"></div>
   </div>
 </template>
@@ -33,22 +34,6 @@ export default {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
       }).addTo(map.value);
-
-      // Get user location
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            userLocation.value = L.latLng(position.coords.latitude, position.coords.longitude);
-            map.value.setView(userLocation.value, 13);
-            L.marker(userLocation.value).addTo(map.value).bindPopup('You are here').openPopup();
-            // Fetch restaurants again to update distances
-            fetchRestaurants();
-          },
-          (error) => {
-            console.error('Error getting user location:', error);
-          }
-        );
-      }
     };
 
     const fetchRestaurants = async () => {
@@ -106,6 +91,23 @@ export default {
       });
     };
 
+    const getUserLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            userLocation.value = L.latLng(position.coords.latitude, position.coords.longitude);
+            map.value.setView(userLocation.value, 13);
+            L.marker(userLocation.value).addTo(map.value).bindPopup('You are here').openPopup();
+            // Fetch restaurants again to update distances
+            fetchRestaurants();
+          },
+          (error) => {
+            console.error('Error getting user location:', error);
+          }
+        );
+      }
+    };
+
     const showNotification = (message) => {
       const notification = document.createElement('div');
       notification.textContent = message;
@@ -127,7 +129,8 @@ export default {
 
     return {
       searchQuery,
-      searchRestaurants
+      searchRestaurants,
+      getUserLocation
     };
   }
 };
@@ -141,5 +144,14 @@ export default {
 input {
   margin: 10px;
   padding: 5px;
+}
+button {
+  margin: 10px;
+  padding: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
