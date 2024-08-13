@@ -11,6 +11,10 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import axios from 'axios';
+
+// Set base URL untuk Axios
+axios.defaults.baseURL = 'https://nadra.harjasaputra.com/api';
 
 export default {
   name: 'MapComponent',
@@ -38,8 +42,8 @@ export default {
 
     const fetchRestaurants = async () => {
       try {
-        const response = await fetch('http://49.13.157.100:8080/restaurants');
-        const data = await response.json();
+        const response = await axios.get('/restaurants');
+        const data = response.data;
 
         // Clear previous markers
         markers.value.forEach(marker => marker.remove());
