@@ -31,7 +31,7 @@
 import axios from "axios";
 import { useRouter } from 'vue-router';
 
-axios.defaults.baseURL = 'https://nadra.harjasaputra.com/api';
+axios.defaults.baseURL = 'https://backend.harjasaputra.com/api';
 
 export default {
   name: "TypeBoxes",

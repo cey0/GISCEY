@@ -14,7 +14,7 @@ import { useRoute } from 'vue-router';
 import axios from 'axios';
 
 // Set base URL untuk Axios
-axios.defaults.baseURL = 'https://nadra.harjasaputra.com/api';
+axios.defaults.baseURL = 'https://backend.harjasaputra.com/api';
 
 export default {
   name: 'MapComponent',
