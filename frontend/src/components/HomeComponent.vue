@@ -31,7 +31,6 @@
 import axios from "axios";
 import { useRouter } from 'vue-router';
 
-// Set base URL untuk Axios
 axios.defaults.baseURL = 'https://nadra.harjasaputra.com/api';
 
 export default {
@@ -58,7 +57,7 @@ export default {
       }
     },
     getImagePath(filename) {
-      return `https://nadra.harjasaputra.com/api/fotoTypes/${filename}`;
+      return `${axios.defaults.baseURL}/fotoTypes/${filename}`;
     },
     goToMap(typeId) {
       this.router.push({ name: 'maps', query: { typeId } });
