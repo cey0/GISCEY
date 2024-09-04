@@ -18,6 +18,7 @@ func ConnDB() {
 	}
 	db.AutoMigrate(&models.Restaurant{})
 	db.AutoMigrate(&models.Type{})
+	db.AutoMigrate(&models.User{})
 
 	DB = db
 

@@ -33,5 +33,12 @@ func main() {
 	r.GET("/api/types", controller.GetType)
 	r.PUT("/api/types/:id", controller.UpdateType)
 	r.DELETE("/api/types/:id", controller.DeleteType)
+
+	//user
+	r.POST("/api/login", controller.Login)
+	r.POST("/api/register", controller.Register)
+
 	r.Run(":8080")
+
+	//users
 }
