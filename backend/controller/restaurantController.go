@@ -11,7 +11,7 @@ import (
 )
 
 func CreateRestaurant(c *gin.Context) {
-	var req request.Create
+	var req request.CreateRestaurantRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -27,11 +27,12 @@ func CreateRestaurant(c *gin.Context) {
 	db.DB.Create(&res)
 	c.JSON(http.StatusCreated, gin.H{"success": res})
 }
+
 func GetRestaurant(c *gin.Context) {
 	var res []models.Restaurant
 
-	db.DB.Find(&res)
-	c.JSON(http.StatusOK, gin.H{"succes": res})
+	db.DB.Preload("Type").Find(&res)
+	c.JSON(http.StatusOK, gin.H{"success": res})
 }
 
 func UpdateRestaurant(c *gin.Context) {
@@ -42,7 +43,7 @@ func UpdateRestaurant(c *gin.Context) {
 		return
 	}
 
-	var input models.Restaurant
+	var input request.UpdateRestaurantRequest
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

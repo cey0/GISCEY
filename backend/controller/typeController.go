@@ -58,9 +58,9 @@ func GetType(c *gin.Context) {
 }
 
 func UpdateType(c *gin.Context) {
-	idStr := c.Param("id")         // Get ID as string
-	id, err := strconv.Atoi(idStr) // Convert to integer
-	if err != nil {                // Add error checking
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID format"})
 		return
 	}
@@ -71,7 +71,6 @@ func UpdateType(c *gin.Context) {
 		return
 	}
 
-	// Parse form data
 	if err := c.Request.ParseMultipartForm(32 << 20); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Form parsing error: " + err.Error()})
 		return

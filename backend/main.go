@@ -14,7 +14,7 @@ func main() {
 	db.ConnDB()
 
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"https://nadra.harjasaputra.com"}
+	corsConfig.AllowOrigins = []string{"https://nadra.harjasaputra.com", "http://localhost:5173"}
 	corsConfig.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
 	corsConfig.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
 
